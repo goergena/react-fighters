@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import irina from './images/irina.png'
+import Fighter from './components/Fighter';
 import './App.css';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <p>
          Welcome to my fighting game!
         </p>
+        <Fighter/>
         <img src={irina} alt="Irina-sensei"/>
       </header>
 
