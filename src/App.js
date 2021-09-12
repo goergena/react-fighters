@@ -21,9 +21,31 @@ class App extends React.Component {
 
   }
 
+
+
   attack() {
     console.log(this.state.enemyAttack)
-    //
+    this.setState((prevState)=> {
+      return {
+        enemyHealth: prevState.enemyHealth -= prevState.fighterAttack
+      }
+    })
+    /* 
+    Round counter increments 1
+      subtract: enemy health - fighterAttack
+      timeout, shake animation
+      message: X attacked! Y took X damage!
+      Y health glows red at new value
+
+     either Y dies OR counter attack:
+      subtract: fighter health  - enemy Attack
+      timeout, shake animation
+      message: Y attacked! X took Y damage!
+      X health glows red at new value
+
+      X dies OR X can attack again
+
+    */
   }
 
   render () {
