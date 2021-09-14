@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.attack = this.attack.bind(this)
+    this.counterAttack = this.counterAttack.bind(this)
     this.state = {
       fighterHealth: 100,
       enemyHealth: 150,
@@ -22,28 +23,9 @@ class App extends React.Component {
 
   }
 
-
-
-  attack() {
-    
-    console.log(this.state.enemyAttack)
-    this.setState((prevState)=> {
-      return {
-        enemyHealth: prevState.enemyHealth - prevState.fighterAttack,
-        round: prevState.round +1
-      }
-    })
-
     
     
-    this.setState((prevState)=> {
-      return {
-        fighterHealth: prevState.fighterHealth - prevState.enemyAttack
-      }
-    })
-    if (this.state.fighterHealth <=0) {
-      console.log('fighter dead! enemy wins')
-    }
+
     /* 
     Round counter increments 1
       subtract: enemy health - fighterAttack
@@ -66,10 +48,30 @@ class App extends React.Component {
       X dies OR X can attack again
 
     */
+
+  attack() {
+    
+    console.log(this.state.enemyAttack)
+    this.setState((prevState)=> {
+      return {
+        enemyHealth: prevState.enemyHealth - prevState.fighterAttack,
+        round: prevState.round +1
+      }
+    })
+
+
   }
 
   counterAttack () {
     console.log('counterattack')
+    this.setState((prevState)=> {
+      return {
+        fighterHealth: prevState.fighterHealth - prevState.enemyAttack
+      }
+    })
+    if (this.state.fighterHealth <=0) {
+      console.log('fighter dead! enemy wins')
+    }
   }
 
   render () {
