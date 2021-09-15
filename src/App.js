@@ -2,12 +2,7 @@ import Fighter from './components/Fighter';
 import './App.css';
 import React from 'react';
 
-
-// function App() {
-//   return (
-
-//   );
-// }
+import Karasuma from './images/karasuma.png';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,16 +14,11 @@ class App extends React.Component {
     this.state = {
       fighterHealth: 100,
       enemyHealth: 150,
-      fighterAttack: 20,
-      enemyAttack: 15,
       round: 0
     }
-
   }
-
-    
-    
-
+  fighterAttack = 20;
+  enemyAttack= 15;
     /* 
     Round counter increments 1
       subtract: enemy health - fighterAttack
@@ -49,13 +39,10 @@ class App extends React.Component {
       X health glows red at new value
 
       X dies OR X can attack again
-
     */
 
   attack() {
-    
-    const newEnemyHealth = this.state.enemyHealth - this.state.fighterAttack;
-    console.log(newEnemyHealth)
+    const newEnemyHealth = this.state.enemyHealth - this.fighterAttack;
     if (newEnemyHealth >0) {
       this.counterAttack()
     } else {
@@ -70,15 +57,13 @@ class App extends React.Component {
   }
 
   counterAttack () {
-    const newFighterHealth = this.state.fighterHealth - this.state.enemyAttack;
-    console.log(newFighterHealth)
+    const newFighterHealth = this.state.fighterHealth - this.enemyAttack;
     if (newFighterHealth <=0) {
       this.fighterDeath()
     }
     this.setState(()=> {
       return {
         fighterHealth: newFighterHealth
-
       }
     })
   }
@@ -95,33 +80,25 @@ class App extends React.Component {
     return (
       <div className="App">
       <header className="App-header">
-
         <p>
          Welcome to my fighting game!
         </p>
         <p> round #: {this.state.round}</p>
-        <Fighter/>
-        <p>Fighter health: {this.state.fighterHealth}</p>
-        <Enemy enemyHealth= {this.state.enemyHealth} />
+        <Fighter fighterHealth={this.state.fighterHealth}/>
+
         <button onClick={this.attack}>Attack</button>
-
-
+        <Enemy enemyHealth= {this.state.enemyHealth} />
       </header>
-
     </div>
     )
   }
 }
 
 class Enemy extends React.Component {
-  // constructor(props) {
-  //   super(props)
-
-  // }
-
   render() {
     return (
       <div>
+        <img src={Karasuma}/>
         <p>enemy health: {this.props.enemyHealth}</p>
       </div>
     )

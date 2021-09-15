@@ -1,10 +1,13 @@
 import React from "react";
+import Irina from '../images/irina.png';
 
 class Fighter extends React.Component {
     render() {
         return (
             <div>
-                <p>this is a fighter component</p>
+                <img src={Irina}/>
+                <p>Fighter health: {this.props.fighterHealth}</p>
+
             </div>
         )
     }
