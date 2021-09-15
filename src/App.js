@@ -2,6 +2,7 @@ import Fighter from './components/Fighter';
 import './App.css';
 import React from 'react';
 
+
 // function App() {
 //   return (
 
@@ -13,6 +14,8 @@ class App extends React.Component {
     super(props);
     this.attack = this.attack.bind(this)
     this.counterAttack = this.counterAttack.bind(this)
+    this.fighterDeath = this.fighterDeath.bind(this)
+    this.enemyDeath = this.enemyDeath.bind(this)
     this.state = {
       fighterHealth: 100,
       enemyHealth: 150,
@@ -51,27 +54,41 @@ class App extends React.Component {
 
   attack() {
     
-    console.log(this.state.enemyAttack)
+    const newEnemyHealth = this.state.enemyHealth - this.state.fighterAttack;
+    console.log(newEnemyHealth)
+    if (newEnemyHealth >0) {
+      this.counterAttack()
+    } else {
+      this.enemyDeath()
+    }
     this.setState((prevState)=> {
       return {
-        enemyHealth: prevState.enemyHealth - prevState.fighterAttack,
+        enemyHealth: newEnemyHealth,
         round: prevState.round +1
       }
     })
-
-
   }
 
   counterAttack () {
-    console.log('counterattack')
-    this.setState((prevState)=> {
+    const newFighterHealth = this.state.fighterHealth - this.state.enemyAttack;
+    console.log(newFighterHealth)
+    if (newFighterHealth <=0) {
+      this.fighterDeath()
+    }
+    this.setState(()=> {
       return {
-        fighterHealth: prevState.fighterHealth - prevState.enemyAttack
+        fighterHealth: newFighterHealth
+
       }
     })
-    if (this.state.fighterHealth <=0) {
-      console.log('fighter dead! enemy wins')
-    }
+  }
+
+  enemyDeath() {
+    console.log('enemy death ' + this.state.enemyHealth)
+  }
+
+  fighterDeath() {
+    console.log('fighter death ' + this.state.fighterHealth)
   }
 
   render () {
@@ -85,7 +102,7 @@ class App extends React.Component {
         <p> round #: {this.state.round}</p>
         <Fighter/>
         <p>Fighter health: {this.state.fighterHealth}</p>
-        <Enemy enemyHealth= {this.state.enemyHealth} counterAttack={this.counterAttack} />
+        <Enemy enemyHealth= {this.state.enemyHealth} />
         <button onClick={this.attack}>Attack</button>
 
 
@@ -97,21 +114,10 @@ class App extends React.Component {
 }
 
 class Enemy extends React.Component {
-  constructor(props) {
-    super(props)
-    this.enemyDeath = this.enemyDeath.bind(this)
-  }
-  componentDidUpdate(prevProps) {
-    //this.props.counterAttack()
-    if(prevProps.enemyHealth >=0) {
-      this.props.counterAttack()
-    } else {
-      this.enemyDeath()
-    }
-  }
-  enemyDeath() {
-    console.log('enemy is dead')
-  }
+  // constructor(props) {
+  //   super(props)
+
+  // }
 
   render() {
     return (
