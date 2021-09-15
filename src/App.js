@@ -1,8 +1,7 @@
 import Fighter from './components/Fighter';
+import Enemy from './components/Enemy';
 import './App.css';
 import React from 'react';
-
-import Karasuma from './images/karasuma.png';
 
 class App extends React.Component {
   constructor(props) {
@@ -90,17 +89,6 @@ class App extends React.Component {
         <Enemy enemyHealth= {this.state.enemyHealth} />
       </header>
     </div>
-    )
-  }
-}
-
-class Enemy extends React.Component {
-  render() {
-    return (
-      <div>
-        <img src={Karasuma}/>
-        <p>enemy health: {this.props.enemyHealth}</p>
-      </div>
     )
   }
 }
