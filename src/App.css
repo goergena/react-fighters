@@ -24,8 +24,22 @@
   color: white;
 }
 
+
+.fight-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
 .App-link {
   color: #61dafb;
+}
+
+.attack-btn {
+  height: 20px;
+  background-color: white;
+  border: solid white 2px;
+
 }
 
 @keyframes App-logo-spin {

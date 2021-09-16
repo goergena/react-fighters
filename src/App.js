@@ -60,6 +60,7 @@ class App extends React.Component {
   }
 
   counterAttack () {
+    
     const newFighterHealth = this.state.fighterHealth - this.enemyAttack;
     if (newFighterHealth <=0) {
       this.fighterDeath()
@@ -89,13 +90,17 @@ class App extends React.Component {
          Welcome to my fighting game!
         </p>
         <p> round #: {this.state.round}</p>
+
+        <div className="fight-area">
         <Fighter 
           fighterHealth={this.state.fighterHealth}
           shake={this.state.counterattacking && 'shake'}
           />
 
-        <button onClick={this.attack}>Attack</button>
+        <button className="attack-btn" onClick={this.attack}>Attack</button>
         <Enemy enemyHealth= {this.state.enemyHealth} />
+        </div>
+
       </header>
     </div>
     )
