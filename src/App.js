@@ -13,7 +13,9 @@ class App extends React.Component {
     this.state = {
       fighterHealth: 100,
       enemyHealth: 150,
-      round: 0
+      round: 0,
+      attacking: false,
+      counterattacking: false
     }
   }
   fighterAttack = 20;
@@ -50,7 +52,9 @@ class App extends React.Component {
     this.setState((prevState)=> {
       return {
         enemyHealth: newEnemyHealth,
-        round: prevState.round +1
+        round: prevState.round +1,
+        attacking: true,
+
       }
     })
   }
@@ -62,7 +66,9 @@ class App extends React.Component {
     }
     this.setState(()=> {
       return {
-        fighterHealth: newFighterHealth
+        fighterHealth: newFighterHealth,
+        attacking: false,
+        counterattacking: true
       }
     })
   }
@@ -83,7 +89,10 @@ class App extends React.Component {
          Welcome to my fighting game!
         </p>
         <p> round #: {this.state.round}</p>
-        <Fighter fighterHealth={this.state.fighterHealth}/>
+        <Fighter 
+          fighterHealth={this.state.fighterHealth}
+          shake={this.state.counterattacking && 'shake'}
+          />
 
         <button onClick={this.attack}>Attack</button>
         <Enemy enemyHealth= {this.state.enemyHealth} />

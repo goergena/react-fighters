@@ -1,16 +1,16 @@
 import React from "react";
 import Irina from '../images/irina.png';
+import './Fighter.css';
 
-class Fighter extends React.Component {
-    render() {
-        return (
-            <div>
-                <img src={Irina}/>
-                <p>Fighter health: {this.props.fighterHealth}</p>
+const Fighter = (props) => {
 
-            </div>
-        )
-    }
+    return (
+        <div className={props.shake && 'shake'}>
+            <img src={Irina}/>
+            <p>Fighter health: {props.fighterHealth}</p>
+
+        </div>
+    )    
 }
 
 export default Fighter;

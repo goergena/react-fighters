@@ -11,3 +11,5 @@ class Enemy extends React.Component {
       )
     }
   }
+
+  export default Enemy;
