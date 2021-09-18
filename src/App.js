@@ -97,7 +97,7 @@ class App extends React.Component {
           shake={this.state.counterattacking && 'shake'}
           />
 
-        <button className="attack-btn" onClick={this.attack}>Attack</button>
+        <button disabled={this.state.fighterHealth <=0} className="attack-btn" onClick={this.attack}>Attack</button>
         <Enemy enemyHealth= {this.state.enemyHealth} />
         </div>
 
